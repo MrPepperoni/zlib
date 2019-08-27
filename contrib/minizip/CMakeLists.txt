@@ -18,10 +18,11 @@ if (WIN32)
 		PRIVATE
 		iowin32.c)
 	list(APPEND minizip_headers iowin32.h)
+else()
+	target_compile_definitions(minizip PRIVATE -DIOAPI_NO_64=1)
 endif()
 
 target_link_libraries(minizip zlib)
-target_compile_definitions(minizip PRIVATE -DIOAPI_NO_64=1)
 
 include(GNUInstallDirs)
 install(TARGETS minizip
